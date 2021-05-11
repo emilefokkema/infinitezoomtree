@@ -2,7 +2,8 @@
 Note taking app based off infinite canvas
 
 Uses https://www.infinite-canvas.org/
-Also uses 
+Also uses roundrect https://stackoverflow.com/users/227299/juan-mendes
+And wraptext https://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
 
 ## Instructions
 Add to your html file:
