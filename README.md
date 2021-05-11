@@ -8,5 +8,5 @@ And wraptext https://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-te
 ## Instructions
 Add to your html file:
 <script src="https://cdn.jsdelivr.net/npm/ef-infinite-canvas@0.5.0-alpha/dist/infinite-canvas.js"></script>
-
+<script src="https://cdn.jsdelivr.net/gh/ruchirlives/infinitezoomtree/zoom-tree.js"></script>
 
