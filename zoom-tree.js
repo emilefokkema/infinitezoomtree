@@ -1,36 +1,33 @@
-function setup() {
+var notes=[]
 
-	var notes=[]
-
-	var canvasElement = document.getElementById("canvas");
-	var rect = canvasElement.getBoundingClientRect();
-	canvasElement.addEventListener("click",mouseactivated)
-	canvasElement.addEventListener("mousedown",longpress)
-	canvasElement.addEventListener("mouseup",longcancel)
-	canvasElement.addEventListener("mousemove",longcancel)
+var canvasElement = document.getElementById("canvas");
+var rect = canvasElement.getBoundingClientRect();
+canvasElement.addEventListener("click",mouseactivated)
+canvasElement.addEventListener("mousedown",longpress)
+canvasElement.addEventListener("mouseup",longcancel)
+canvasElement.addEventListener("mousemove",longcancel)
 
 
-	document.getElementById("undo").addEventListener("click", function() { notes.pop(); drawtext();});
-	document.getElementById("save").addEventListener("click",save)
-	document.getElementById("load").addEventListener("click",load)
-	document.getElementById("exportlist").addEventListener("click",exportlist)
-	document.getElementById("bookmark").addEventListener("click",bookmark)
-	document.getElementById("restore").addEventListener("click",restore)
+document.getElementById("undo").addEventListener("click", function() { notes.pop(); drawtext();});
+document.getElementById("save").addEventListener("click",save)
+document.getElementById("load").addEventListener("click",load)
+document.getElementById("exportlist").addEventListener("click",exportlist)
+document.getElementById("bookmark").addEventListener("click",bookmark)
+document.getElementById("restore").addEventListener("click",restore)
 
 
-	var infCanvas = new InfiniteCanvas(canvasElement);
-	// var infCanvas = canvasElement
-	// infCanvas.addEventListener('draw', drawtext)
+var infCanvas = new InfiniteCanvas(canvasElement);
+// var infCanvas = canvasElement
+// infCanvas.addEventListener('draw', drawtext)
 
-	infCanvas.greedyGestureHandling = true;
+infCanvas.greedyGestureHandling = true;
 
-	var ctx = infCanvas.getContext("2d");
+var ctx = infCanvas.getContext("2d");
 
-	drawunderlay()
+drawunderlay()
 
-	// roundRect(ctx, 5, 5, 50, 50);
-	// wrapText(ctx, "hello this is a long sentence", 100, 100, 80, 20)
-}
+// roundRect(ctx, 5, 5, 50, 50);
+// wrapText(ctx, "hello this is a long sentence", 100, 100, 80, 20)
 var timer=null
 
 
