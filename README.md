@@ -10,3 +10,5 @@ Add to your html file:
 <script src="https://cdn.jsdelivr.net/npm/ef-infinite-canvas@0.5.0-alpha/dist/infinite-canvas.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ruchirlives/infinitezoomtree/zoom-tree.js"></script>
 
+##HTML
+Use the example html file to set up the webpage
