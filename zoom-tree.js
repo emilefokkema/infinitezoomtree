@@ -7,15 +7,12 @@ canvasElement.addEventListener("mousedown",longpress)
 canvasElement.addEventListener("mouseup",longcancel)
 canvasElement.addEventListener("mousemove",longcancel)
 
-
-document.getElementById("undo").addEventListener("click", function() { notes.pop(); drawtext();});
-document.getElementById("save").addEventListener("click",save)
-document.getElementById("load").addEventListener("click",load)
-document.getElementById("exportlist").addEventListener("click",exportlist)
-document.getElementById("bookmark").addEventListener("click",bookmark)
-document.getElementById("restore").addEventListener("click",restore)
-document.getElementById("svglink").addEventListener("change",changesvg)
-
+addbutton("undo","click",function() { notes.pop(); drawtext();})
+addbutton("save","click",save)
+addbutton("load","click",load)
+addbutton("exportlist","click",exportlist)
+addbutton("bookmark","click",bookmark)
+addbutton("restore","click",restore)
 
 var infCanvas = new InfiniteCanvas(canvasElement);
 // var infCanvas = canvasElement
@@ -43,6 +40,23 @@ if (img.src) {
 // roundRect(ctx, 5, 5, 50, 50);
 // wrapText(ctx, "hello this is a long sentence", 100, 100, 80, 20)
 var timer=null
+
+
+function addbutton(id,event,func) {
+	btn=document.getElementById(id)
+	if (!btn) {
+		console.log("no button")
+		var btn = document.createElement("BUTTON");   // Create a <button> element
+		btn.innerHTML = id;
+		btn.id = id
+		btn.classList.add("btn")
+		btn.classList.add("btn-primary")
+		document.body.appendChild(btn)
+		
+	}
+	document.getElementById(id).addEventListener(event,func)
+}
+
 
 function changesvg(event) {
 	previmg=img.src
