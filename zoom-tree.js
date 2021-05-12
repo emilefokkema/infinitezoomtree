@@ -14,6 +14,7 @@ document.getElementById("load").addEventListener("click",load)
 document.getElementById("exportlist").addEventListener("click",exportlist)
 document.getElementById("bookmark").addEventListener("click",bookmark)
 document.getElementById("restore").addEventListener("click",restore)
+document.getElementById("svglink").addEventListener("change",changesvg)
 
 
 var infCanvas = new InfiniteCanvas(canvasElement);
@@ -24,12 +25,33 @@ infCanvas.greedyGestureHandling = true;
 
 var ctx = infCanvas.getContext("2d");
 
-drawunderlay()
+
+var img = new Image();
+var previmg
+
+img.onload = function() {drawunderlay();}
+
+img.onerror = function(){ 
+    alert("Error with image link... reverting...");
+	img.src = previmg
+};
+
+if (img.src) {
+	changesvg()
+}
 
 // roundRect(ctx, 5, 5, 50, 50);
 // wrapText(ctx, "hello this is a long sentence", 100, 100, 80, 20)
 var timer=null
 
+function changesvg(event) {
+	previmg=img.src
+	img.src=document.getElementById("svglink").value
+}
+
+function drawunderlay() {
+	ctx.drawImage(img, 0, 0);	
+}
 
 function bookmark(event) {
 	console.log('saving bookmark')
@@ -56,26 +78,6 @@ function longactivated(event) {
 
 function longcancel(event) {
 	clearTimeout(timer)
-}
-
-
-function drawunderlay() {
-	ctx.fillStyle = "rgba(0, 0, 0, 1)";
-	ctx.lineWidth = 10;
-
-	// Wall
-	ctx.strokeRect(75, 140, 150, 110);
-
-	// Door
-	ctx.fillRect(130, 190, 40, 60);
-
-	// Roof
-	ctx.beginPath();
-	ctx.moveTo(50, 140);
-	ctx.lineTo(150, 60);
-	ctx.lineTo(250, 140);
-	ctx.closePath();
-	ctx.stroke();
 }
 
 function save() {
