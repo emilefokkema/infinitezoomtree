@@ -65,18 +65,17 @@ var ctx = infCanvas.getContext("2d");
 
 
 var img = new Image();
-var previmg
+var previmg = "https://www.freepatternsarea.com/wp-content/uploads/template-files/vector/vy003.svg"
+// Source: Freepatternsarea.com Creative Commons Attribution 4.0 International License. (CC BY-NC-SA 4.0)
 
-img.onload = function() {drawunderlay();}
+img.onload = function() {previmg=img.src; drawunderlay();}
 
 img.onerror = function(){ 
     alert("Error with image link... reverting...");
 	img.src = previmg
 };
 
-if (img.src) {
-	changesvg()
-}
+changesvg()
 
 // roundRect(ctx, 5, 5, 50, 50);
 // wrapText(ctx, "hello this is a long sentence", 100, 100, 80, 20)
@@ -100,8 +99,13 @@ function addbutton(id,event,func) {
 
 
 function changesvg(event) {
-	previmg=img.src
-	img.src=document.getElementById("svglink").value
+
+	file=document.getElementById("svglink").value
+	if (file) {
+		
+		img.src=file
+
+	}
 }
 
 function drawunderlay() {
