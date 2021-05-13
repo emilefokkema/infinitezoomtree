@@ -14,16 +14,14 @@ if (!canvasElement) {
 
 var rect = canvasElement.getBoundingClientRect();
 canvasElement.addEventListener("click",mouseactivated)
-canvasElement.addEventListener("mousedown",longpress)
-canvasElement.addEventListener("mouseup",longcancel)
-canvasElement.addEventListener("mousemove",longcancel)
+canvasElement.addEventListener("touchstart",longpress)
+canvasElement.addEventListener("touchend",longcancel)
+canvasElement.addEventListener("touchmove",longcancel)
 
 addbutton("undo","click",function() { notes.pop(); drawtext();})
 addbutton("save","click",save)
 addbutton("load","click",load)
 addbutton("exportlist","click",exportlist)
-addbutton("bookmark","click",bookmark)
-addbutton("restore","click",restore)
 
 svglink=document.getElementById("svglink")
 if (!svglink) {
@@ -110,17 +108,6 @@ function changesvg(event) {
 
 function drawunderlay() {
 	ctx.drawImage(img, 0, 0);	
-}
-
-function bookmark(event) {
-	console.log('saving bookmark')
-	ctx.save()
-}
-
-function restore(event) {
-	console.log('restoring bookmark')
-	ctx.restore()
-	drawtext()
 }
 
 
