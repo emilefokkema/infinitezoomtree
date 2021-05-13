@@ -1,6 +1,17 @@
 var notes=[]
 
 var canvasElement = document.getElementById("canvas");
+// <canvas id="canvas" width="1500" height="700" style="border:1px solid #000000;"></canvas>
+if (!canvasElement) {
+	canvasElement=document.createElement("canvas")
+	canvasElement.id="canvas"
+	canvasElement.width=1500
+	canvasElement.height=700
+	canvasElement.style="border:1px solid #000000;"
+	document.body.appendChild(canvasElement)
+}
+
+
 var rect = canvasElement.getBoundingClientRect();
 canvasElement.addEventListener("click",mouseactivated)
 canvasElement.addEventListener("mousedown",longpress)
@@ -13,6 +24,36 @@ addbutton("load","click",load)
 addbutton("exportlist","click",exportlist)
 addbutton("bookmark","click",bookmark)
 addbutton("restore","click",restore)
+
+svglink=document.getElementById("svglink")
+if (!svglink) {
+	svglink=document.createElement("INPUT")
+	svglink.id="svglink"
+	svglink.size=80
+	svglink.name="SVG file"
+	document.body.appendChild(svglink)
+
+}
+svglink.addEventListener("change",changesvg)
+
+fileItem=document.getElementById("fileItem")
+if (!fileItem) {
+	fileItem=document.createElement("INPUT")
+	fileItem.id="fileItem"
+	fileItem.type="file"
+	fileItem.name="Notes file"
+	document.body.appendChild(fileItem)
+}
+
+list=document.getElementById("list")
+if(!list) {
+	list=document.createElement("p")
+	list.innerHTML="Exported list of notes will show here, for copy and pasting."
+	list.id="list"
+	document.body.appendChild(list)
+}
+
+
 
 var infCanvas = new InfiniteCanvas(canvasElement);
 // var infCanvas = canvasElement
