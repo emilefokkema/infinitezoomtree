@@ -202,7 +202,7 @@ function drawtext() {
 
 
 
-	ctx.clearRect(0, 0, rect.width, rect.height);
+	ctx.clearRect(-Infinity, -Infinity, Infinity, Infinity);
 	drawunderlay()
 
 	for (i of notes) {
