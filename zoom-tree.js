@@ -246,11 +246,13 @@ function drawnote(parameters) {
 	width = ctx.measureText(text).width+20
 	height = lineHeight * 2
 
-	ctx.fillRect(locx, locy, idealWidth(), fullHeight);
+	//ctx.fillRect(locx, locy, idealWidth(), fullHeight);
+
+	
+
+	rad=2.10; roundRect(ctx,locx, locy, width, height, {tl: rad,br: rad,tr:rad,bl:rad},true,false);
 
 	ctx.restore();
-
-	// rad=2.10; roundRect(ctx,locx, locy, width, height, {tl: rad,br: rad,tr:rad,bl:rad},true,false);
 
 }
 
