@@ -183,13 +183,12 @@ function mouseactivated(event) {
 function addtext(event) {
 
 
-	text=prompt("Note","Note");
+	const text=prompt("Note","Note");
 
-	locx=event.layerX
-	locy=event.layerY
-	trans=ctx.canvasTransform.viewBox.canvasRectangle.coordinateSystems
+	const locx=event.offsetX
+	const locy=event.offsetY
+	const trans=infCanvas.transformation;
 
-	scale=trans.infiniteCanvasContextBase.a
 	col=50+150*Math.random();
 
 	notes.push({'x':locx,'y':locy,'trans':trans,'col':col,'text':text}) //store note parameters in array
@@ -214,14 +213,11 @@ function drawtext() {
 
 function drawnote(parameters) {
 
-	t=parameters.trans.infiniteCanvasContextBase
-	scale=t.a
-	offsetx=t.e
-	offsety=t.f
+	const t=parameters.trans
 
-	locx=(parameters.x-offsetx)/scale
-	locy=(parameters.y-offsety)/scale
-	text=parameters.text
+	const locx=parameters.x;
+	const locy=parameters.y;
+	const text=parameters.text
 
 	if(!text) {
 		return
@@ -229,26 +225,30 @@ function drawnote(parameters) {
 
 
 
-	col=parameters.col
+	const col=parameters.col
 
-	ctx.font = 12/scale+"px Verdana";
+	ctx.save();
+	ctx.setTransform(t.a, t.b, t.c, t.d, t.e, t.f);
+	ctx.font = "12px Verdana";
 
 
 	ctx.fillStyle = "rgba(0, 0, 0, 1)";
-	x=locx+10/scale
-	y=locy+20/scale
+	const x=locx+10
+	const y=locy+20
 	// ctx.fillText(text,x,y)
 
-	maxWidth=80/scale
-	lineHeight=15/scale
+	maxWidth=80
+	const lineHeight=15
 
-	fullHeight=wrapText(ctx, text, x, y, maxWidth, lineHeight)
+	const fullHeight=wrapText(ctx, text, x, y, maxWidth, lineHeight)
 
     ctx.fillStyle = "rgba("+col+", 50, "+col+", 0.6)";
-	width = ctx.measureText(text).width+(20/scale)
+	width = ctx.measureText(text).width+20
 	height = lineHeight * 2
 
 	ctx.fillRect(locx, locy, idealWidth(), fullHeight);
+
+	ctx.restore();
 
 	// rad=2.10; roundRect(ctx,locx, locy, width, height, {tl: rad,br: rad,tr:rad,bl:rad},true,false);
 
